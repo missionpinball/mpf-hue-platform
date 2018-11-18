@@ -37,12 +37,12 @@ setup(
     # MANIFEST.in picks up the rest
     packages=['mpf_hue_platform'],
 
-    install_requires=['mpf'],
+    install_requires=['mpf', 'phue'],
 
     tests_require=[],
 
     entry_points='''
     [mpf.platforms]
-    hue_platform=mpf_hue_platform.platform:HueHardwarePlatform
+    hue=mpf_hue_platform.platform:HueHardwarePlatform
     '''
 )

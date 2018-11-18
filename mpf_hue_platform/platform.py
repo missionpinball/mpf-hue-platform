@@ -101,12 +101,15 @@ class HueHardwarePlatform(LightsPlatform):
     def initialize(self):
         """Initialise platform."""
         # load config
-        self.config = self.machine.config_validator.validate_config("hue", self.machine.config['hue'])
+        self.config = self.machine.config_validator.validate_config("hue", self.machine.config.get('hue', {}))
         self.hue = Bridge(self.config['ip'])
 
-    @staticmethod
-    def get_config_spec():
-        return "hue", {}
+    @classmethod
+    def get_config_spec(cls):
+        return "hue", """
+__valid_in__: machine
+ip: single|str|
+        """
 
     def stop(self):
         """Stop platform."""
